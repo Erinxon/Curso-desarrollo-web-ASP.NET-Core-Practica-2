@@ -1,0 +1,41 @@
+﻿@page
+@model NominaModel
+@{
+    ViewData["Title"] = "Nómina";
+}
+
+
+<div class="container table-responsive">
+    <h3 class="text-center">Lista de empleados en nómina</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cargo</th>
+                <th>Salario Mensual</th>
+                <th>Descuento AFP</th>
+                <th>Descuento ARS</th>
+                <th>Descuento ISR</th>
+                <th>Total de descuentos</th>
+                <th>Salario Neto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var empleado in Model.empleados)
+            {
+                <tr>
+                    <td>@empleado.nombre</td>
+                    <td>@empleado.apellido</td>
+                    <td>@empleado.cargo</td>
+                    <td>@empleado.salario</td>
+                    <td>@Model.GetDescuentoAFP(empleado.id)</td>
+                    <td>@Model.GetDescuentoARS(empleado.id)</td>
+                    <td>@Model.GetDescuentoISR(empleado.id)</td>
+                    <td>@Model.GetTotaldescuentos(empleado.id)</td>
+                    <td>@Model.GetSalarioNeto(empleado.id)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
